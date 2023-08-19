@@ -16,8 +16,11 @@ function ExpenseForm() {
 
         <div className="new-expense__control">
           <label>Date</label>
-          <input type="date" />
+          <input type="date" min="2019-01-01" />
         </div>
+      </div>
+      <div className="new-expense__actions">
+        <button type="submit">Add Expense</button>{" "}
       </div>
     </form>
   );
