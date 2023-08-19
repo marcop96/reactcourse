@@ -28,13 +28,18 @@ function ExpenseForm() {
     }
   }
   function submitHandler(event) {
-    event.preventDefault;
+    event.preventDefault();
 
     const expenseData = {
       title: enteredTitle,
       amount: enteredAmount,
-      date: enteredDate,
+      date: new Date(enteredDate),
     };
+
+    console.log(expenseData);
+    setEnteredTitle("");
+    setEnteredAmount("");
+    setEnteredDate("");
   }
   return (
     <form onSubmit={submitHandler}>
@@ -43,6 +48,7 @@ function ExpenseForm() {
           <label>Title</label>
           <input
             type="text"
+            value={enteredTitle}
             onChange={(event) =>
               inputChangeHandler("title", event.target.value)
             }
@@ -53,6 +59,7 @@ function ExpenseForm() {
           <label>Amount</label>
           <input
             type="number"
+            value={enteredAmount}
             onChange={(event) =>
               inputChangeHandler("amount", event.target.value)
             }
@@ -63,6 +70,7 @@ function ExpenseForm() {
           <label>Date</label>
           <input
             type="date"
+            value={enteredDate}
             min="2019-01-01"
             onChange={(event) => inputChangeHandler("date", event.target.value)}
           />
