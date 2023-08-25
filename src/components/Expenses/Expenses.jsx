@@ -1,15 +1,14 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import ExpenseItem from "./ExpenseItem";
+import ExpensesList from "./ExpensesList";
 import Card from "../UI/Card";
 import "./Expenses.css";
 import ExpensesFilter from "./ExpensesFilter";
 const Expenses = (props) => {
-  const [filteredYear, setFilteredYear] = useState("2021");
+  const [filteredYear, setFilteredYear] = useState("all");
   const filterChangedHandler = (selectedYear) => {
     setFilteredYear(selectedYear);
-    console.log(selectedYear);
   };
 
   const filteredExpenses = props.items.filter((expense) => {
@@ -19,18 +18,6 @@ const Expenses = (props) => {
     );
   });
 
-  let expensesContent = <p>No expenses in {filteredYear}</p>;
-
-  if (filteredExpenses.length > 0) {
-    expensesContent = filteredExpenses.map((expense) => (
-      <ExpenseItem
-        key={expense.id}
-        title={expense.title}
-        amount={expense.amount}
-        date={expense.date}
-      />
-    ));
-  }
   return (
     <div>
       <Card className="expenses">
@@ -39,7 +26,8 @@ const Expenses = (props) => {
           onChangedFilter={filterChangedHandler}
         />
       </Card>
-      {expensesContent}
+
+      <ExpensesList items={filteredExpenses} />
     </div>
   );
 };
