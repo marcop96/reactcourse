@@ -31,6 +31,10 @@ function ExpenseForm(props) {
   function submitHandler(event) {
     event.preventDefault();
 
+    if (enteredTitle === "" || enteredAmount === "" || enteredDate === "") {
+      return;
+    }
+
     const expenseData = {
       title: enteredTitle,
       amount: enteredAmount,
@@ -40,16 +44,15 @@ function ExpenseForm(props) {
     setEnteredTitle("");
     setEnteredAmount("");
     setEnteredDate("");
+    swapHidden();
   }
   const [isHidden, setIsHidden] = useState(true);
-  function createExpenseButtonHandler() {
+  function swapHidden() {
     setIsHidden(!isHidden);
   }
 
   if (isHidden === true) {
-    return (
-      <button onClick={createExpenseButtonHandler}>Create new Expense</button>
-    );
+    return <button onClick={swapHidden}>Create new Expense</button>;
   }
   if (isHidden === false) {
     return (
@@ -90,6 +93,16 @@ function ExpenseForm(props) {
           </div>
         </div>
         <div className="new-expense__actions">
+          <button
+            onClick={() => {
+              swapHidden();
+              setEnteredTitle("");
+              setEnteredAmount("");
+              setEnteredDate("");
+            }}
+          >
+            Cancel
+          </button>
           <button type="submit">Add Expense</button>
         </div>
       </form>
