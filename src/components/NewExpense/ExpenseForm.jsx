@@ -41,46 +41,60 @@ function ExpenseForm(props) {
     setEnteredAmount("");
     setEnteredDate("");
   }
-  return (
-    <form onSubmit={submitHandler}>
-      <div className="new-expense__controls">
-        <div className="new-expense__control">
-          <label>Title</label>
-          <input
-            type="text"
-            value={enteredTitle}
-            onChange={(event) =>
-              inputChangeHandler("title", event.target.value)
-            }
-          />
-        </div>
+  const [isHidden, setIsHidden] = useState(true);
+  function createExpenseButtonHandler() {
+    setIsHidden(!isHidden);
+  }
 
-        <div className="new-expense__control">
-          <label>Amount</label>
-          <input
-            type="number"
-            value={enteredAmount}
-            onChange={(event) =>
-              inputChangeHandler("amount", event.target.value)
-            }
-          />
-        </div>
+  if (isHidden === true) {
+    return (
+      <button onClick={createExpenseButtonHandler}>Create new Expense</button>
+    );
+  }
+  if (isHidden === false) {
+    return (
+      <form onSubmit={submitHandler}>
+        <div className="new-expense__controls">
+          <div className="new-expense__control">
+            <label>Title</label>
+            <input
+              type="text"
+              value={enteredTitle}
+              onChange={(event) =>
+                inputChangeHandler("title", event.target.value)
+              }
+            />
+          </div>
 
-        <div className="new-expense__control">
-          <label>Date</label>
-          <input
-            type="date"
-            value={enteredDate}
-            min="2019-01-01"
-            onChange={(event) => inputChangeHandler("date", event.target.value)}
-          />
+          <div className="new-expense__control">
+            <label>Amount</label>
+            <input
+              type="number"
+              value={enteredAmount}
+              onChange={(event) =>
+                inputChangeHandler("amount", event.target.value)
+              }
+            />
+          </div>
+
+          <div className="new-expense__control">
+            <label>Date</label>
+            <input
+              type="date"
+              value={enteredDate}
+              min="2019-01-01"
+              onChange={(event) =>
+                inputChangeHandler("date", event.target.value)
+              }
+            />
+          </div>
         </div>
-      </div>
-      <div className="new-expense__actions">
-        <button type="submit">Add Expense</button>
-      </div>
-    </form>
-  );
+        <div className="new-expense__actions">
+          <button type="submit">Add Expense</button>
+        </div>
+      </form>
+    );
+  }
 }
 
 export default ExpenseForm;
