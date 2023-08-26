@@ -4,7 +4,7 @@ import { useState } from "react";
 import ExpensesList from "./ExpensesList";
 import Card from "../UI/Card";
 import "./Expenses.css";
-import ExpensesChart from "./expensesChart";
+import ExpensesChart from "./ExpensesChart";
 import ExpensesFilter from "./ExpensesFilter";
 const Expenses = (props) => {
   const [filteredYear, setFilteredYear] = useState("all");
