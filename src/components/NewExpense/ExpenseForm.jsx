@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import "./expenseForm.css";
+import "./ExpenseForm.css";
 
 function ExpenseForm(props) {
   const [enteredTitle, setEnteredTitle] = useState("");
