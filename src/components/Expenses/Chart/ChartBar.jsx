@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import "./chartBar.css";
+import "./ChartBar.css";
 
 function ChartBar(props) {
   let barFillHeight = "0%";
