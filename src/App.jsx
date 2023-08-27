@@ -25,6 +25,7 @@ const DUMMY_EXPENSES = [
 ];
 const App = () => {
   const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
+
   // return React.createElement(
   //   'div',
   //   {},
@@ -32,15 +33,11 @@ const App = () => {
   //   React.createElement(Expenses, { items: expenses })
   // );
   const [filteredYear, setFilteredYear] = useState("all");
-  const [years, setYears] = useState([
-    "all",
-    "2019",
-    "2020",
-    "2021",
-    "2022",
-    "2023",
-  ]);
-
+  const [years, setYears] = useState(
+    ["all", ...new Set(expenses.map((e) => e.date.getFullYear()))]
+      .toSorted()
+      .toReversed()
+  );
   function addExpenseHandler(expense) {
     setExpenses((prevExpenses) => {
       return [expense, ...prevExpenses];

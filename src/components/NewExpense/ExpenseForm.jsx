@@ -7,17 +7,6 @@ function ExpenseForm(props) {
   const [enteredAmount, setEnteredAmount] = useState("");
   const [enteredDate, setEnteredDate] = useState("");
   const { setYears, setFilteredYear } = props;
-  // function titleChangeHandler() {
-  //   setEnteredTitle(event.target.value);
-  // }
-
-  // function amountChangeHandler() {
-  //   setEnteredAmount(event.target.value);
-  // }
-
-  // function dateChangeHandler() {
-  //   setEnteredDate(event.target.value);
-  // }
 
   function inputChangeHandler(identifier, value) {
     if (identifier === "title") {
@@ -40,14 +29,12 @@ function ExpenseForm(props) {
       amount: +enteredAmount,
       date: new Date(enteredDate),
     };
-    console.log(event);
     props.onSaveExpenseData(expenseData);
     setEnteredTitle("");
     setEnteredAmount("");
     setEnteredDate("");
     swapHidden();
     let newExpenseDate = document.getElementById("date").value;
-    console.log("under this");
     const newYear = newExpenseDate.split("-")[0];
     const newYearList = [];
 
@@ -55,8 +42,12 @@ function ExpenseForm(props) {
     setFilteredYear(newYear);
 
     setYears((prevState) => {
-      const yearArray = [...prevState, newYear];
-      return yearArray.sort();
+      console.log(prevState);
+
+      console.log(newYear);
+      const yearArray = [...new Set([...prevState, Number(newYear)])];
+
+      return yearArray.sort().reverse();
     });
   }
   const [isHidden, setIsHidden] = useState(true);
