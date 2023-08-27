@@ -1,13 +1,14 @@
-/* eslint-disable react/jsx-key */
 /* eslint-disable react/prop-types */
 import ExpensesList from "./ExpensesList";
 import Card from "../UI/Card";
 import "./Expenses.css";
 import ExpensesChart from "./ExpensesChart";
 import ExpensesFilter from "./ExpensesFilter";
+
 const Expenses = (props) => {
   console.log(props);
-  const { filteredYear, setFilteredYear } = props;
+  const { filteredYear, setFilteredYear, years, setYears } = props;
+
   const filterChangedHandler = (selectedYear) => {
     setFilteredYear(selectedYear);
   };
@@ -25,6 +26,8 @@ const Expenses = (props) => {
         <ExpensesFilter
           selected={filteredYear}
           onChangedFilter={filterChangedHandler}
+          years={years}
+          setYears={setYears}
         />
         <ExpensesChart expenses={filteredExpenses} />
 

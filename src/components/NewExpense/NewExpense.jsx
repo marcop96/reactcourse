@@ -2,7 +2,7 @@
 import "./NewExpense.css";
 import ExpenseForm from "./ExpenseForm";
 function NewExpense(props) {
-  const { setFilteredYear } = props;
+  const { setFilteredYear, setYears } = props;
 
   const saveExpenseDataHandler = (enteredExpenseData) => {
     const expenseData = {
@@ -17,6 +17,7 @@ function NewExpense(props) {
       <ExpenseForm
         onSaveExpenseData={saveExpenseDataHandler}
         setFilteredYear={setFilteredYear}
+        setYears={setYears}
       />
       {/* passes onSaveExpenseData as a prop, which recieves saveexpensedatahandler as value */}
     </div>

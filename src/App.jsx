@@ -32,6 +32,14 @@ const App = () => {
   //   React.createElement(Expenses, { items: expenses })
   // );
   const [filteredYear, setFilteredYear] = useState("all");
+  const [years, setYears] = useState([
+    "all",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+  ]);
 
   function addExpenseHandler(expense) {
     setExpenses((prevExpenses) => {
@@ -44,8 +52,11 @@ const App = () => {
       <NewExpense
         onAddExpense={addExpenseHandler}
         setFilteredYear={setFilteredYear}
+        setYears={setYears}
       />
       <Expenses
+        years={years}
+        setYears={setYears}
         items={expenses}
         filteredYear={filteredYear}
         setFilteredYear={setFilteredYear}
