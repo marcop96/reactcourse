@@ -31,6 +31,7 @@ const App = () => {
   //   React.createElement('h2', {}, "Let's get started!"),
   //   React.createElement(Expenses, { items: expenses })
   // );
+  const [filteredYear, setFilteredYear] = useState("all");
 
   function addExpenseHandler(expense) {
     setExpenses((prevExpenses) => {
@@ -40,8 +41,15 @@ const App = () => {
 
   return (
     <div>
-      <NewExpense onAddExpense={addExpenseHandler} />
-      <Expenses items={expenses} />
+      <NewExpense
+        onAddExpense={addExpenseHandler}
+        setFilteredYear={setFilteredYear}
+      />
+      <Expenses
+        items={expenses}
+        filteredYear={filteredYear}
+        setFilteredYear={setFilteredYear}
+      />
     </div>
   );
 };

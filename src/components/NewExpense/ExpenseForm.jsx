@@ -40,11 +40,14 @@ function ExpenseForm(props) {
       amount: +enteredAmount,
       date: new Date(enteredDate),
     };
+    console.log(event);
     props.onSaveExpenseData(expenseData);
     setEnteredTitle("");
     setEnteredAmount("");
     setEnteredDate("");
     swapHidden();
+    let newExpenseDate = document.getElementById("date").value;
+    props.setFilteredYear(newExpenseDate.split("-")[0]);
   }
   const [isHidden, setIsHidden] = useState(true);
   function swapHidden() {
@@ -83,6 +86,7 @@ function ExpenseForm(props) {
           <div className="new-expense__control">
             <label>Date</label>
             <input
+              id="date"
               type="date"
               value={enteredDate}
               min="2019-01-01"

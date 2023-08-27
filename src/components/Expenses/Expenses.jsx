@@ -1,13 +1,13 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable react/prop-types */
-import { useState } from "react";
 import ExpensesList from "./ExpensesList";
 import Card from "../UI/Card";
 import "./Expenses.css";
 import ExpensesChart from "./ExpensesChart";
 import ExpensesFilter from "./ExpensesFilter";
 const Expenses = (props) => {
-  const [filteredYear, setFilteredYear] = useState("all");
+  console.log(props);
+  const { filteredYear, setFilteredYear } = props;
   const filterChangedHandler = (selectedYear) => {
     setFilteredYear(selectedYear);
   };
